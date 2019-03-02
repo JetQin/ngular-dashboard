@@ -1,13 +1,24 @@
 <div id="search-component">
-    <h4>Hero Search</h4>
    
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <!-- <input #searchBox id="search-box" (input)="search(searchBox.value)" /> -->
    
-    <ul class="search-result">
-      <li *ngFor="let hero of heroes$ | async" >
-        <a routerLink="/detail/{{hero.id}}">
-          {{hero.name}}
-        </a>
-      </li>
-    </ul>
+    <nz-card style="width:100%;" nzTitle="Hero Search" [nzExtra]="extraTemplate">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input #searchBox id="search-box" (input)="search(searchBox.value)"  nz-input placeholder="input search hero">
+      </nz-input-group>
+      <!-- <nz-list [nzDataSource]="heroes$ | async">
+          <ng-template #hero let-item>
+              <nz-list-item [nzContent]="hero">
+                  <a routerLink="/detail/{{hero.id}}">{{hero.name}}</a>
+              </nz-list-item>
+          </ng-template>
+      </nz-list> -->
+      <ul class="search-result">
+          <li *ngFor="let hero of heroes$ | async" >
+            <a routerLink="/detail/{{hero.id}}">
+              {{hero.name}}
+            </a>
+          </li>
+      </ul>
+    </nz-card>
   </div>

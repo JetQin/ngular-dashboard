@@ -1,11 +1,24 @@
 <div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name">
-    </label>
-  </div>
+  <nz-card [nzTitle]="'hero.name | uppercase'">
+    <form nz-form>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" >ID</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input type="text" name="ID" [disabled]="true" nz-input [(ngModel)]="hero.id">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24">Name</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input type="text" name="Name" nz-input [(ngModel)]="hero.name" placeholder="Name">
+          </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row style="margin-bottom:8px;">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button style="margin-right:5px;" nz-button nzType="primary" (click)="goBack()">go back</button>
+            <button nz-button nzType="primary" (click)="save()">save</button>
+          </nz-form-control>
+        </nz-form-item>
+    </form>
+  </nz-card>
 </div>
-<button (click)="goBack()">go back</button>
-<button (click)="save()">save</button>
