@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
 ## Demo screenshot
-
+![Demo Screenshot](https://raw.githubusercontent.com/JetQin/ngular-dashboard/master/src/assets/ngular-dashboard.png)
 
 ## Development server
 
