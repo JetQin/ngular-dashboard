@@ -1,10 +1,6 @@
 <div *ngIf="messageService.messages.length">
   <nz-card [nzTitle]="'Messages'" [nzExtra]="extraTemplate">
-    <nz-list [nzDataSource]="messageService.messages" [nzRenderItem]="item">
-      <ng-template #item let-item>
-        <nz-list-item [nzContent]="item"></nz-list-item>
-      </ng-template>
-    </nz-list>
+      <div *ngFor="let message of messageService.messages">{{message}}</div>
   </nz-card>
   <ng-template #extraTemplate>
     <button nz-button nzType="primary" (click)="messageService.clear()">clear</button>

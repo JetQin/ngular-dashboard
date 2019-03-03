@@ -1,22 +1,30 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span>{{hero.name}}
-    </a>
-    <button class="delete" title="delete hero"
-      (click)="delete(hero)">x</button>
-  </li>
-</ul>
+<nz-card [nzTitle]="'My Heroes'">
+  <form nz-form nz-form [nzLayout]="'inline'">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="email">Name</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <input #heroName nz-input name="email" type="email" id="email">
+        </nz-form-control>
+      </nz-form-item >
+      <nz-form-item>
+          <nz-form-control [nzSpan]="14">
+              <button nz-button nzType="primary" (click)="add(heroName.value); heroName.value=''">Add</button>
+          </nz-form-control>
+        </nz-form-item >
+    </form>
 
-<div>
-  <label>Hero name:
-    <input #heroName />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''">
-    add
-  </button>
-</div>
-
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+  <nz-list [nzDataSource]="heroes" nzBordered [nzRenderItem]="item">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="content" [nzActions]="[deleteAction]">
+          <ng-template #content>
+            <a routerLink="/detail/{{item.id}}">
+              <span class="badge">{{item.id}}</span>{{item.name}}
+            </a>
+          </ng-template>
+          <ng-template #deleteAction>
+            <a (click)="delete(item)">delete</a>
+          </ng-template>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+</nz-card>
